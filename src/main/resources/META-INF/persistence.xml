@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="Magento_PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ua.obolon.ponovoy.entity.SalesFlatQuote</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatOrderGrid</class>
+    <class>ua.obolon.ponovoy.entity.CoreStore</class>
+    <class>ua.obolon.ponovoy.entity.CoreStoreGroup</class>
+    <class>ua.obolon.ponovoy.entity.CustomerEntity</class>
+    <class>ua.obolon.ponovoy.entity.CoreWebsite</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatQuotePayment</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatOrderItem</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatOrder</class>
+    <class>ua.obolon.ponovoy.entity.EavEntityType</class>
+    <class>ua.obolon.ponovoy.entity.EavAttribute</class>
+    <class>ua.obolon.ponovoy.entity.CustomerEntityVarchar</class>
+    <class>ua.obolon.ponovoy.entity.CustomerAddressEntityVarchar</class>
+    <class>ua.obolon.ponovoy.entity.CustomerAddressEntity</class>
+    <class>ua.obolon.ponovoy.entity.CustomerAddressEntityText</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatOrderAddress</class>
+    <class>ua.obolon.ponovoy.entity.SalesFlatOrderPayment</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.74.150:3306/admin_base?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="sasha"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="111222333"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="Calls_PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ua.obolon.ponovoy.local.entity.CallRecriverCalls</class>
+    <class>ua.obolon.ponovoy.local.entity.ManagersCalls</class>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="Calls_PU"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.74.150:3306/call_receiver?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="sasha"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="111222333"/>
+    </properties>
+  </persistence-unit>
+</persistence>
