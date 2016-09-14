@@ -9,10 +9,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.channels.SocketChannel;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ua.obolon.ponovoy.inerfaces.Order;
+import ua.obolon.ponovoy.inerfaces.dao.SalesDao;
 import ua.obolon.ponovoy.local.dao.ManagersJPA;
+import ua.obolon.ponovoy.magento.dao.SalesDaoImpl;
 import ua.obolon.ponovoy.res.RequestKey;
+import ua.obolon.ponovoy.server.interfaces.DataTransfer;
 
 /**
  *
@@ -21,11 +26,13 @@ import ua.obolon.ponovoy.res.RequestKey;
 public class Client implements Runnable {
 
     private SocketChannel clientSocket;
-    private Check c;
+    private DataTransfer transfer;
+    private ChanelHolder holder;
 
-    public Client(SocketChannel s, Check c) {
+    public Client(SocketChannel s, ChanelHolder c) {
         this.clientSocket = s;
-        this.c = c;
+        this.holder = c;
+        this.transfer = new DataTransferImpl();
     }
 
     @Override
@@ -44,7 +51,7 @@ public class Client implements Runnable {
                     clientSocket.close();
                     ManagersJPA mjpa = new ManagersJPA();
                     if (mjpa.getLogin(username, password)) {
-                        c.callPhone(username + "@" + password, telephone);
+                        holder.sendCall(username + "@" + password, telephone);
                     } else {
                     }
                     break;
@@ -56,13 +63,27 @@ public class Client implements Runnable {
                     ObjectOutputStream oos = new ObjectOutputStream(clientSocket.socket().getOutputStream());
                     if (mjpa.getLogin(username, password)) {
                         oos.writeObject("true");
-                        c.addClient(username + "@" + password, clientSocket);
+                        holder.loginClient(username + "@" + password, clientSocket);
                     } else {
                         oos.writeObject("false");
                     }
                     break;
                 }
                 case GET_ORDERS: {
+                    String username = (String) ois.readObject();
+                    String password = (String) ois.readObject();
+                    String telephone = (String) ois.readObject();
+                    SalesDao salesDao = new SalesDaoImpl();
+                    List<Order> orders = salesDao.getOrdersByTelephone(telephone);
+
+                    if (orders != null) {
+                        transfer.sendUserDetailsToClient(orders, clientSocket);
+                        clientSocket.close();
+                    } else {
+                        //TODO empty
+                        clientSocket.close();
+                    }
+
                     break;
                 }
                 default: {

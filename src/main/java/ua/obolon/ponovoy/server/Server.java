@@ -20,12 +20,12 @@ public final class Server implements Runnable {
     private final int port;
     private ServerSocketChannel serverSocket = null;
     private boolean isRun = true;
-    private final Check c;
+    private final ChanelHolder c;
 
     public Server(String serverIP, int port) {
         this.serverIP = serverIP;
         this.port = port;
-        this.c = new Check();
+        this.c = new ChanelHolder();
     }
 
     @Override

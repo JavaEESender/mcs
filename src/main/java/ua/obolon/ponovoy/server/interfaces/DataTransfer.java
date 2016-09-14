@@ -9,7 +9,6 @@ import java.nio.channels.SocketChannel;
 import java.util.List;
 import ua.obolon.ponovoy.inerfaces.Order;
 import ua.obolon.ponovoy.inerfaces.User;
-import ua.obolon.ponovoy.inerfaces.UserDetails;
 
 /**
  *

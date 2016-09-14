@@ -36,7 +36,6 @@ public class UserDaoImpl extends JPA implements UserDao {
         try {
             SalesFlatOrderAddress salesFlatOrderAddress = (SalesFlatOrderAddress) manager.createQuery("SELECT s FROM SalesFlatOrderAddress s WHERE s.telephone = :telephone AND s.addressType = :addressType ORDER BY s.parentId.createdAt DESC")
                     .setParameter("telephone", telephone).setParameter("addressType", "shipping").setMaxResults(1).getSingleResult();
-            System.out.println(salesFlatOrderAddress!=null);
             if (salesFlatOrderAddress != null) {
                 user.setId(salesFlatOrderAddress.getParentId().getEntityId());
                 user.setFirstName(salesFlatOrderAddress.getFirstname());

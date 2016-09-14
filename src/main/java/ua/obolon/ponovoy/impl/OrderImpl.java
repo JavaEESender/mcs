@@ -5,6 +5,7 @@
  */
 package ua.obolon.ponovoy.impl;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import ua.obolon.ponovoy.res.ProductArt;
  *
  * @author Alexander
  */
-public class OrderImpl implements Order{
+public class OrderImpl implements Order, Serializable{
     
     private long id;
     private List<Map<ProductArt, String>> products;

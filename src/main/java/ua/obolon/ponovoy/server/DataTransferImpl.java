@@ -41,7 +41,19 @@ public class DataTransferImpl implements DataTransfer {
 
     @Override
     public boolean sendUserDetailsToClient(List<Order> list, SocketChannel chanel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (chanel != null) {
+            try {
+                ObjectOutputStream oos = new ObjectOutputStream(chanel.socket().getOutputStream());
+
+                oos.writeObject(list);
+                return true;
+            } catch (IOException ex) {
+                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 }
