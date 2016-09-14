@@ -8,8 +8,10 @@ package ua.obolon.ponovoy.server;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.channels.SocketChannel;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ua.obolon.ponovoy.inerfaces.Order;
 import ua.obolon.ponovoy.inerfaces.User;
 import ua.obolon.ponovoy.inerfaces.UserDetails;
 import ua.obolon.ponovoy.server.interfaces.DataTransfer;
@@ -38,7 +40,7 @@ public class DataTransferImpl implements DataTransfer {
     }
 
     @Override
-    public boolean sendUserDetailsToClient(UserDetails userDetails) {
+    public boolean sendUserDetailsToClient(List<Order> list, SocketChannel chanel) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -6,6 +6,8 @@
 package ua.obolon.ponovoy.server.interfaces;
 
 import java.nio.channels.SocketChannel;
+import java.util.List;
+import ua.obolon.ponovoy.inerfaces.Order;
 import ua.obolon.ponovoy.inerfaces.User;
 import ua.obolon.ponovoy.inerfaces.UserDetails;
 
@@ -16,6 +18,6 @@ import ua.obolon.ponovoy.inerfaces.UserDetails;
 public interface DataTransfer {
     
    boolean sendUserToClient(User user, SocketChannel chanel);
-   boolean sendUserDetailsToClient(UserDetails userDetails);
+   boolean sendUserDetailsToClient(List<Order> list, SocketChannel chanel);
     
 }

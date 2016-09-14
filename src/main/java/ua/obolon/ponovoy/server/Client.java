@@ -12,6 +12,7 @@ import java.nio.channels.SocketChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ua.obolon.ponovoy.local.dao.ManagersJPA;
+import ua.obolon.ponovoy.res.RequestKey;
 
 /**
  *
@@ -32,11 +33,11 @@ public class Client implements Runnable {
 
         try {
             ObjectInputStream ois = new ObjectInputStream(clientSocket.socket().getInputStream());
-            
-            String sw = (String) ois.readObject();
+
+            RequestKey sw = (RequestKey) ois.readObject();
 
             switch (sw) {
-                case "callAndroid": {
+                case CALL_ANDROID: {
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
                     String telephone = (String) ois.readObject();
@@ -48,7 +49,7 @@ public class Client implements Runnable {
                     }
                     break;
                 }
-                case "newLogin": {
+                case NEW_LOGIN: {
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
                     ManagersJPA mjpa = new ManagersJPA();
@@ -59,6 +60,9 @@ public class Client implements Runnable {
                     } else {
                         oos.writeObject("false");
                     }
+                    break;
+                }
+                case GET_ORDERS: {
                     break;
                 }
                 default: {
