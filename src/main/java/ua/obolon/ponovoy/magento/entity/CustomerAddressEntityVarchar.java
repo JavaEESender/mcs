@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.entity;
+package ua.obolon.ponovoy.magento.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,12 +24,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Alexander
  */
 @Entity
-@Table(name = "customer_address_entity_text")
+@Table(name = "customer_address_entity_varchar")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CustomerAddressEntityText.findAll", query = "SELECT c FROM CustomerAddressEntityText c"),
-    @NamedQuery(name = "CustomerAddressEntityText.findByValueId", query = "SELECT c FROM CustomerAddressEntityText c WHERE c.valueId = :valueId")})
-public class CustomerAddressEntityText implements Serializable {
+    @NamedQuery(name = "CustomerAddressEntityVarchar.findAll", query = "SELECT c FROM CustomerAddressEntityVarchar c"),
+    @NamedQuery(name = "CustomerAddressEntityVarchar.findByValueId", query = "SELECT c FROM CustomerAddressEntityVarchar c WHERE c.valueId = :valueId"),
+    @NamedQuery(name = "CustomerAddressEntityVarchar.findByValue", query = "SELECT c FROM CustomerAddressEntityVarchar c WHERE c.value = :value")})
+public class CustomerAddressEntityVarchar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,8 +38,6 @@ public class CustomerAddressEntityText implements Serializable {
     @Basic(optional = false)
     @Column(name = "value_id")
     private Integer valueId;
-    @Basic(optional = false)
-    @Lob
     @Column(name = "value")
     private String value;
     @JoinColumn(name = "attribute_id", referencedColumnName = "attribute_id")
@@ -52,16 +50,11 @@ public class CustomerAddressEntityText implements Serializable {
     @ManyToOne(optional = false)
     private EavEntityType entityTypeId;
 
-    public CustomerAddressEntityText() {
+    public CustomerAddressEntityVarchar() {
     }
 
-    public CustomerAddressEntityText(Integer valueId) {
+    public CustomerAddressEntityVarchar(Integer valueId) {
         this.valueId = valueId;
-    }
-
-    public CustomerAddressEntityText(Integer valueId, String value) {
-        this.valueId = valueId;
-        this.value = value;
     }
 
     public Integer getValueId() {
@@ -114,10 +107,10 @@ public class CustomerAddressEntityText implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CustomerAddressEntityText)) {
+        if (!(object instanceof CustomerAddressEntityVarchar)) {
             return false;
         }
-        CustomerAddressEntityText other = (CustomerAddressEntityText) object;
+        CustomerAddressEntityVarchar other = (CustomerAddressEntityVarchar) object;
         if ((this.valueId == null && other.valueId != null) || (this.valueId != null && !this.valueId.equals(other.valueId))) {
             return false;
         }
@@ -126,7 +119,7 @@ public class CustomerAddressEntityText implements Serializable {
 
     @Override
     public String toString() {
-        return "ua.obolon.ponovoy.entity.CustomerAddressEntityText[ valueId=" + valueId + " ]";
+        return "ua.obolon.ponovoy.entity.CustomerAddressEntityVarchar[ valueId=" + valueId + " ]";
     }
     
 }

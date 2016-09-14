@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.entity;
+package ua.obolon.ponovoy.magento.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

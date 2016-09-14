@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.entity;
+package ua.obolon.ponovoy.magento.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -24,13 +24,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Alexander
  */
 @Entity
-@Table(name = "customer_address_entity_varchar")
+@Table(name = "customer_entity_varchar")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CustomerAddressEntityVarchar.findAll", query = "SELECT c FROM CustomerAddressEntityVarchar c"),
-    @NamedQuery(name = "CustomerAddressEntityVarchar.findByValueId", query = "SELECT c FROM CustomerAddressEntityVarchar c WHERE c.valueId = :valueId"),
-    @NamedQuery(name = "CustomerAddressEntityVarchar.findByValue", query = "SELECT c FROM CustomerAddressEntityVarchar c WHERE c.value = :value")})
-public class CustomerAddressEntityVarchar implements Serializable {
+    @NamedQuery(name = "CustomerEntityVarchar.findAll", query = "SELECT c FROM CustomerEntityVarchar c"),
+    @NamedQuery(name = "CustomerEntityVarchar.findByValueId", query = "SELECT c FROM CustomerEntityVarchar c WHERE c.valueId = :valueId"),
+    @NamedQuery(name = "CustomerEntityVarchar.findByValue", query = "SELECT c FROM CustomerEntityVarchar c WHERE c.value = :value")})
+public class CustomerEntityVarchar implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,17 +43,17 @@ public class CustomerAddressEntityVarchar implements Serializable {
     @JoinColumn(name = "attribute_id", referencedColumnName = "attribute_id")
     @ManyToOne(optional = false)
     private EavAttribute attributeId;
-    @JoinColumn(name = "entity_id", referencedColumnName = "entity_id")
-    @ManyToOne(optional = false)
-    private CustomerAddressEntity entityId;
     @JoinColumn(name = "entity_type_id", referencedColumnName = "entity_type_id")
     @ManyToOne(optional = false)
     private EavEntityType entityTypeId;
+    @JoinColumn(name = "entity_id", referencedColumnName = "entity_id")
+    @ManyToOne(optional = false)
+    private CustomerEntity entityId;
 
-    public CustomerAddressEntityVarchar() {
+    public CustomerEntityVarchar() {
     }
 
-    public CustomerAddressEntityVarchar(Integer valueId) {
+    public CustomerEntityVarchar(Integer valueId) {
         this.valueId = valueId;
     }
 
@@ -81,20 +81,20 @@ public class CustomerAddressEntityVarchar implements Serializable {
         this.attributeId = attributeId;
     }
 
-    public CustomerAddressEntity getEntityId() {
-        return entityId;
-    }
-
-    public void setEntityId(CustomerAddressEntity entityId) {
-        this.entityId = entityId;
-    }
-
     public EavEntityType getEntityTypeId() {
         return entityTypeId;
     }
 
     public void setEntityTypeId(EavEntityType entityTypeId) {
         this.entityTypeId = entityTypeId;
+    }
+
+    public CustomerEntity getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(CustomerEntity entityId) {
+        this.entityId = entityId;
     }
 
     @Override
@@ -107,10 +107,10 @@ public class CustomerAddressEntityVarchar implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CustomerAddressEntityVarchar)) {
+        if (!(object instanceof CustomerEntityVarchar)) {
             return false;
         }
-        CustomerAddressEntityVarchar other = (CustomerAddressEntityVarchar) object;
+        CustomerEntityVarchar other = (CustomerEntityVarchar) object;
         if ((this.valueId == null && other.valueId != null) || (this.valueId != null && !this.valueId.equals(other.valueId))) {
             return false;
         }
@@ -119,7 +119,7 @@ public class CustomerAddressEntityVarchar implements Serializable {
 
     @Override
     public String toString() {
-        return "ua.obolon.ponovoy.entity.CustomerAddressEntityVarchar[ valueId=" + valueId + " ]";
+        return "ua.obolon.ponovoy.entity.CustomerEntityVarchar[ valueId=" + valueId + " ]";
     }
     
 }

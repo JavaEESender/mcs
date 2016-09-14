@@ -5,6 +5,7 @@
  */
 package ua.obolon.ponovoy.dao;
 
+import ua.obolon.ponovoy.magento.dao.UserDaoImpl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

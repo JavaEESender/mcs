@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.dao;
+package ua.obolon.ponovoy.magento.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
-import ua.obolon.ponovoy.entity.SalesFlatOrderAddress;
-import ua.obolon.ponovoy.entity.SalesFlatOrderItem;
-import ua.obolon.ponovoy.entity.SalesFlatOrderPayment;
+import ua.obolon.ponovoy.magento.entity.SalesFlatOrderAddress;
+import ua.obolon.ponovoy.magento.entity.SalesFlatOrderItem;
+import ua.obolon.ponovoy.magento.entity.SalesFlatOrderPayment;
 import ua.obolon.ponovoy.impl.OrderImpl;
 import ua.obolon.ponovoy.inerfaces.Order;
 import ua.obolon.ponovoy.inerfaces.dao.SalesDao;

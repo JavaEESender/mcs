@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.dao;
+package ua.obolon.ponovoy.magento.dao;
 
 import ua.obolon.ponovoy.impl.UserDetailsImpl;
 import ua.obolon.ponovoy.inerfaces.User;

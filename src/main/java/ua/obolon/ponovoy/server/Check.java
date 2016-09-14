@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ua.obolon.ponovoy.dao.UserDaoImpl;
+import ua.obolon.ponovoy.magento.dao.UserDaoImpl;
+import ua.obolon.ponovoy.impl.UserImpl;
 import ua.obolon.ponovoy.inerfaces.User;
+import ua.obolon.ponovoy.server.interfaces.DataTransfer;
 import ua.obolon.ponovoy.local.dao.CallsJPA;
 
 /**
@@ -23,9 +25,11 @@ import ua.obolon.ponovoy.local.dao.CallsJPA;
 public class Check {
 
     private Map m;
+    DataTransfer transfer;
 
     public Check() {
         this.m = new HashMap<String, SocketChannel>();
+        this.transfer = new DataTransferImpl();
     }
 
     public void callPhone(String pass, String phone) {
@@ -35,30 +39,16 @@ public class Check {
         User user = new UserDaoImpl().getUserByTelephone(phone);
 
         if (user != null) {
-
             SocketChannel tm = (SocketChannel) m.get(pass);
-            if (tm != null) {
-                try {
-                    ObjectOutputStream oos = new ObjectOutputStream(tm.socket().getOutputStream());
-
-                    oos.writeObject(user);
-                } catch (IOException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            transfer.sendUserToClient(user, tm);
         } else {
             SocketChannel tm = (SocketChannel) m.get(pass);
-            if (tm != null) {
-                try {
-                    ObjectOutputStream oos = new ObjectOutputStream(tm.socket().getOutputStream());
-                    user.setTelephone(phone);
-                    user.setFirstName("?");
-                    user.setLastName("?");
-                    oos.writeObject(user);
-                } catch (IOException ex) {
-                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            User guest = new UserImpl();
+            guest.setId(0);
+            guest.setTelephone(phone);
+            guest.setFirstName("unknown");
+            guest.setLastName("unknown");
+            transfer.sendUserToClient(guest, tm);
         }
     }
 
@@ -70,5 +60,4 @@ public class Check {
             m.put(pass, s);
         }
     }
-
 }
