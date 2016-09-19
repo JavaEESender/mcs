@@ -6,7 +6,7 @@
 package ua.obolon.ponovoy.inerfaces.dao;
 
 import java.util.List;
-import ua.obolon.ponovoy.inerfaces.Order;
+import ua.obolon.ponovoy.interfaces.Order;
 
 /**
  *

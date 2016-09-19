@@ -11,9 +11,9 @@ import java.nio.channels.SocketChannel;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ua.obolon.ponovoy.inerfaces.Order;
-import ua.obolon.ponovoy.inerfaces.User;
-import ua.obolon.ponovoy.inerfaces.UserDetails;
+import ua.obolon.ponovoy.interfaces.Order;
+import ua.obolon.ponovoy.interfaces.User;
+import ua.obolon.ponovoy.interfaces.UserDetails;
 import ua.obolon.ponovoy.server.interfaces.DataTransfer;
 
 /**

@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ua.obolon.ponovoy.impl.UserImpl;
-import ua.obolon.ponovoy.inerfaces.User;
+import ua.obolon.ponovoy.interfaces.User;
 
 /**
  *

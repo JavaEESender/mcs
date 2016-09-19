@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.inerfaces;
+package ua.obolon.ponovoy.interfaces;
+
+import java.util.List;
 
 /**
  *
  * @author Alexander
  */
-public interface Call {
+public interface UserOrders {
 
-    Call setNumber(String number);
-    Call setDate(long date);
-    long getDate();
-    String getNumber();
+    List<Order> getActiveOrders(User user);
 
+    List<Order> getAllOrders(User user);
+
+    void setOrders(List<Order> list);
 }

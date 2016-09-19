@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import ua.obolon.ponovoy.magento.dao.UserDaoImpl;
 import ua.obolon.ponovoy.impl.UserImpl;
-import ua.obolon.ponovoy.inerfaces.Order;
-import ua.obolon.ponovoy.inerfaces.User;
+import ua.obolon.ponovoy.interfaces.Order;
+import ua.obolon.ponovoy.interfaces.User;
 import ua.obolon.ponovoy.server.interfaces.DataTransfer;
 import ua.obolon.ponovoy.local.dao.CallsJPA;
 

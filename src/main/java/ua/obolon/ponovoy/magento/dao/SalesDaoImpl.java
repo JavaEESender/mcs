@@ -14,7 +14,7 @@ import ua.obolon.ponovoy.magento.entity.SalesFlatOrderAddress;
 import ua.obolon.ponovoy.magento.entity.SalesFlatOrderItem;
 import ua.obolon.ponovoy.magento.entity.SalesFlatOrderPayment;
 import ua.obolon.ponovoy.impl.OrderImpl;
-import ua.obolon.ponovoy.inerfaces.Order;
+import ua.obolon.ponovoy.interfaces.Order;
 import ua.obolon.ponovoy.inerfaces.dao.SalesDao;
 import ua.obolon.ponovoy.res.ProductArt;
 

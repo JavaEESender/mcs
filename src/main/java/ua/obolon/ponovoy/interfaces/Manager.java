@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.obolon.ponovoy.inerfaces.dao;
-
-import ua.obolon.ponovoy.interfaces.User;
+package ua.obolon.ponovoy.interfaces;
 
 /**
  *
  * @author Alexander
  */
-public interface UserDao {
- 
-    User getUserByTelephone(String telephone);
+public interface Manager {
     
 }

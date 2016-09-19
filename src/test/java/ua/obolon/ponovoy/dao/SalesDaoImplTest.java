@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ua.obolon.ponovoy.inerfaces.Order;
+import ua.obolon.ponovoy.interfaces.Order;
 import ua.obolon.ponovoy.res.ProductArt;
 
 /**

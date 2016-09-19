@@ -5,8 +5,8 @@
  */
 package ua.obolon.ponovoy.inerfaces.dao;
 
-import ua.obolon.ponovoy.inerfaces.User;
-import ua.obolon.ponovoy.inerfaces.UserDetails;
+import ua.obolon.ponovoy.interfaces.User;
+import ua.obolon.ponovoy.interfaces.UserDetails;
 
 /**
  *

@@ -6,9 +6,9 @@
 package ua.obolon.ponovoy.impl;
 
 import java.util.Objects;
-import ua.obolon.ponovoy.inerfaces.User;
-import ua.obolon.ponovoy.inerfaces.UserDetails;
-import ua.obolon.ponovoy.inerfaces.UserOrders;
+import ua.obolon.ponovoy.interfaces.User;
+import ua.obolon.ponovoy.interfaces.UserDetails;
+import ua.obolon.ponovoy.interfaces.UserOrders;
 
 /**
  * @version 1.0
