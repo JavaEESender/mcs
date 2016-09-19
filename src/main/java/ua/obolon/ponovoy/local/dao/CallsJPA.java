@@ -5,6 +5,7 @@
  */
 package ua.obolon.ponovoy.local.dao;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import ua.obolon.ponovoy.local.entity.CallRecriverCalls;
@@ -15,11 +16,11 @@ import ua.obolon.ponovoy.local.entity.CallRecriverCalls;
  */
 public class CallsJPA extends JPA_calls {
 
-    public void setNewCall(String man, String client) {
+    public void setNewCall(String man, String client, Date date) {
         EntityManager manager = getManager();
         try {
             GregorianCalendar gc = new GregorianCalendar();
-            CallRecriverCalls calls = new CallRecriverCalls(Integer.SIZE, man, client, gc.getTime());
+            CallRecriverCalls calls = new CallRecriverCalls(Integer.SIZE, man, client, date);
             manager.getTransaction().begin();
             manager.persist(calls);
             manager.getTransaction().commit();

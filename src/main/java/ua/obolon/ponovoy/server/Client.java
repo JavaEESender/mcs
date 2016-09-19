@@ -9,11 +9,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.channels.SocketChannel;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ua.obolon.ponovoy.inerfaces.Call;
 import ua.obolon.ponovoy.inerfaces.Order;
 import ua.obolon.ponovoy.inerfaces.dao.SalesDao;
+import ua.obolon.ponovoy.local.dao.CallsJPA;
 import ua.obolon.ponovoy.local.dao.ManagersJPA;
 import ua.obolon.ponovoy.magento.dao.SalesDaoImpl;
 import ua.obolon.ponovoy.res.RequestKey;
@@ -42,7 +46,6 @@ public class Client implements Runnable {
             ObjectInputStream ois = new ObjectInputStream(clientSocket.socket().getInputStream());
 
             RequestKey sw = (RequestKey) ois.readObject();
-
             switch (sw) {
                 case CALL_ANDROID: {
                     String username = (String) ois.readObject();
@@ -54,6 +57,19 @@ public class Client implements Runnable {
                         holder.sendCall(username + "@" + password, telephone);
                     } else {
                     }
+                    break;
+                }
+                case MISSED_CALLS: {
+                    String username = (String) ois.readObject();
+                    String password = (String) ois.readObject();
+                    List<Call> list = (List<Call>) ois.readObject();
+                    clientSocket.close();
+                    CallsJPA log_call = new CallsJPA();
+                    log_call.refresh();
+                    list.forEach((Call c) -> {
+                        log_call.setNewCall(username + "@" + password, c.getNumber(), new Date(c.getDate()));
+                        System.out.println(c.getNumber());
+                    });
                     break;
                 }
                 case NEW_LOGIN: {

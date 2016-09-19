@@ -6,6 +6,7 @@
 package ua.obolon.ponovoy.server;
 
 import java.nio.channels.SocketChannel;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class ChanelHolder {
     public void sendCall(String pass, String phone) {
         CallsJPA log_call = new CallsJPA();
         log_call.refresh();
-        log_call.setNewCall(pass, phone);
+        log_call.setNewCall(pass, phone, new GregorianCalendar().getTime());
         User user = new UserDaoImpl().getUserByTelephone(phone);
 
         if (user != null) {
