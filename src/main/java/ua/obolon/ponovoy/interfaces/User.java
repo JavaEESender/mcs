@@ -15,10 +15,10 @@ public interface User {
     void setLastName(String lastName);
     void setIsActive(boolean isActive);
     void setTelephone(String telephone);
+    void setCallDate(long callDate);
     String getFirstName();
     String getLastName();
     boolean isActive();
     String getTelephone();
-    
-    
+    long getCallDate();
 }

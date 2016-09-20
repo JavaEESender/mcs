@@ -38,6 +38,7 @@ public class ChanelHolder {
         User user = new UserDaoImpl().getUserByTelephone(phone);
 
         if (user != null) {
+            user.setCallDate(new GregorianCalendar().getTimeInMillis());
             SocketChannel tm = (SocketChannel) chanels.get(pass);
             transfer.sendUserToClient(user, tm);
         } else {
@@ -47,6 +48,7 @@ public class ChanelHolder {
             guest.setTelephone(phone);
             guest.setFirstName("unknown");
             guest.setLastName("unknown");
+            guest.setCallDate(new GregorianCalendar().getTimeInMillis());
             transfer.sendUserToClient(guest, tm);
         }
     }

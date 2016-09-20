@@ -19,6 +19,7 @@ public class UserImpl implements User, Serializable {
     private boolean isActive;
     private String telephone = "NONE";
     private long id;
+    private long callDate;
 
     public UserImpl(long id, String firstname, String lastName, boolean isActive, String telephone) {
         this.firstName = firstname;
@@ -109,6 +110,16 @@ public class UserImpl implements User, Serializable {
     @Override
     public long getId() {
         return id;
+    }
+
+    @Override
+    public void setCallDate(long callDate) {
+        this.callDate = callDate;
+    }
+
+    @Override
+    public long getCallDate() {
+        return callDate;
     }
 
 }

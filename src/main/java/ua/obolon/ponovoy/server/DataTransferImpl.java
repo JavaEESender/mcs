@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import ua.obolon.ponovoy.interfaces.Order;
 import ua.obolon.ponovoy.interfaces.User;
 import ua.obolon.ponovoy.interfaces.UserDetails;
+import ua.obolon.ponovoy.res.RequestKey;
 import ua.obolon.ponovoy.server.interfaces.DataTransfer;
 
 /**
@@ -27,7 +28,7 @@ public class DataTransferImpl implements DataTransfer {
         if (chanel != null) {
             try {
                 ObjectOutputStream oos = new ObjectOutputStream(chanel.socket().getOutputStream());
-
+                oos.writeObject(RequestKey.SET_NEW_CALL);
                 oos.writeObject(user);
                 return true;
             } catch (IOException ex) {

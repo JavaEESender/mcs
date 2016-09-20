@@ -47,6 +47,7 @@ public class Client implements Runnable {
             RequestKey sw = (RequestKey) ois.readObject();
             switch (sw) {
                 case CALL_ANDROID: {
+                    System.out.println("Andr");
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
                     String telephone = (String) ois.readObject();
