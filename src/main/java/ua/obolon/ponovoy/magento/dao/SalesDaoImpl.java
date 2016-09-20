@@ -48,7 +48,7 @@ public class SalesDaoImpl extends JPA implements SalesDao {
                 SalesFlatOrderPayment salesFlatOrderPayment = (SalesFlatOrderPayment) manager.createQuery("SELECT s FROM SalesFlatOrderPayment s WHERE s.parentId = :parentId")
                     .setParameter("parentId", s.getParentId()).getSingleResult();
                 tmp.setPaymentType(salesFlatOrderPayment.getMethod()).setOrderDate(s.getParentId().getCreatedAt()).setId(s.getParentId().getEntityId()).
-                        setShipMethod(s.getParentId().getShippingDescription());
+                        setShipMethod(s.getParentId().getShippingDescription()).setOrderID(s.getParentId().getIncrementId());
                 
                 List<SalesFlatOrderItem> items = (List<SalesFlatOrderItem>) manager.createQuery("SELECT s FROM SalesFlatOrderItem s WHERE s.orderId = :order_id")
                     .setParameter("order_id", s.getParentId()).getResultList();
