@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import ua.obolon.ponovoy.interfaces.Call;
 import ua.obolon.ponovoy.interfaces.Order;
 import ua.obolon.ponovoy.inerfaces.dao.SalesDao;
+import ua.obolon.ponovoy.interfaces.User;
 import ua.obolon.ponovoy.local.dao.CallsJPA;
 import ua.obolon.ponovoy.local.dao.ManagersJPA;
 import ua.obolon.ponovoy.magento.dao.SalesDaoImpl;
@@ -46,7 +47,7 @@ public class Client implements Runnable {
 
             RequestKey sw = (RequestKey) ois.readObject();
             switch (sw) {
-                case CALL_ANDROID: {
+                case CALL_ANDROID: {                            //Send from android
                     System.out.println("Andr");
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
@@ -59,7 +60,7 @@ public class Client implements Runnable {
                     }
                     break;
                 }
-                case MISSED_CALLS: {
+                case MISSED_CALLS: {                            //Send to android
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
                     List<Call> list = (List<Call>) ois.readObject();
@@ -85,13 +86,23 @@ public class Client implements Runnable {
                     }
                     break;
                 }
+                case GET_CALLS: {
+                    String username = (String) ois.readObject();
+                    String password = (String) ois.readObject();
+                    long time = (long) ois.readObject();
+                    ManagersJPA mjpa = new ManagersJPA();
+                    ObjectOutputStream oos = new ObjectOutputStream(clientSocket.socket().getOutputStream());
+                    List<User> list = mjpa.getCalls(username + "@" + password, time);
+                    oos.writeObject(list);
+                    clientSocket.close();
+                    break;
+                }
                 case GET_ORDERS: {
                     String username = (String) ois.readObject();
                     String password = (String) ois.readObject();
                     String telephone = (String) ois.readObject();
                     SalesDao salesDao = new SalesDaoImpl();
                     List<Order> orders = salesDao.getOrdersByTelephone(telephone);
-
                     if (orders != null) {
                         transfer.sendUserDetailsToClient(orders, clientSocket);
                         clientSocket.close();
@@ -99,7 +110,6 @@ public class Client implements Runnable {
                         //TODO empty
                         clientSocket.close();
                     }
-
                     break;
                 }
                 default: {

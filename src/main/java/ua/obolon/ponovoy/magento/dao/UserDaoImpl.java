@@ -5,9 +5,7 @@
  */
 package ua.obolon.ponovoy.magento.dao;
 
-import java.util.List;
 import javax.persistence.EntityManager;
-import ua.obolon.ponovoy.magento.entity.CustomerAddressEntityVarchar;
 import ua.obolon.ponovoy.magento.entity.SalesFlatOrderAddress;
 import ua.obolon.ponovoy.impl.UserImpl;
 import ua.obolon.ponovoy.interfaces.User;
