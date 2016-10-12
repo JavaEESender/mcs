@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ua.magento.caller.server;
+
+import java.nio.channels.SocketChannel;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import ua.magento.caller.magento.dao.UserDaoImpl;
+import ua.magento.caller.impl.UserImpl;
+import ua.magento.caller.interfaces.Order;
+import ua.magento.caller.interfaces.User;
+import ua.magento.caller.server.interfaces.DataTransfer;
+import ua.magento.caller.local.dao.CallsJPA;
+
+/**
+ *
+ * @author Alexander
+ */
+public class ChanelHolder {
+
+    private Map chanels;
+    DataTransfer transfer;
+
+    public ChanelHolder() {
+        this.chanels = new HashMap<String, SocketChannel>();
+        this.transfer = new DataTransferImpl();
+    }
+
+    public void sendCall(String pass, String phone) {
+        CallsJPA log_call = new CallsJPA();
+        log_call.refresh();
+        log_call.setNewCall(pass, phone, new GregorianCalendar().getTime());
+        User user = new UserDaoImpl().getUserByTelephone(phone);
+
+        if (user != null) {
+            user.setCallDate(new GregorianCalendar().getTimeInMillis());
+            SocketChannel tm = (SocketChannel) chanels.get(pass);
+            transfer.sendUserToClient(user, tm);
+        } else {
+            SocketChannel tm = (SocketChannel) chanels.get(pass);
+            User guest = new UserImpl();
+            guest.setId(0);
+            guest.setTelephone(phone);
+            guest.setFirstName("unknown");
+            guest.setLastName("unknown");
+            guest.setCallDate(new GregorianCalendar().getTimeInMillis());
+            transfer.sendUserToClient(guest, tm);
+        }
+    }
+
+    public boolean sendOrders(List<Order> list, String pass, SocketChannel channel) {
+        if (list != null) {
+            transfer.sendUserDetailsToClient(list, channel);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void loginClient(String pass, SocketChannel s) {
+        if (chanels.get(pass) != null) {
+            chanels.put(pass, s);
+        } else {
+            chanels.remove(pass);
+            chanels.put(pass, s);
+        }
+    }
+}

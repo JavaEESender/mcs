@@ -2,23 +2,23 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Magento_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatOrderItem</class>
-    <class>ua.obolon.ponovoy.magento.entity.EavAttribute</class>
-    <class>ua.obolon.ponovoy.magento.entity.CustomerAddressEntityVarchar</class>
-    <class>ua.obolon.ponovoy.magento.entity.CustomerAddressEntity</class>
-    <class>ua.obolon.ponovoy.magento.entity.CoreStore</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatOrderGrid</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatOrder</class>
-    <class>ua.obolon.ponovoy.magento.entity.CustomerEntity</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatOrderPayment</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatQuotePayment</class>
-    <class>ua.obolon.ponovoy.magento.entity.CoreWebsite</class>
-    <class>ua.obolon.ponovoy.magento.entity.CoreStoreGroup</class>
-    <class>ua.obolon.ponovoy.magento.entity.EavEntityType</class>
-    <class>ua.obolon.ponovoy.magento.entity.CustomerAddressEntityText</class>
-    <class>ua.obolon.ponovoy.magento.entity.CustomerEntityVarchar</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatOrderAddress</class>
-    <class>ua.obolon.ponovoy.magento.entity.SalesFlatQuote</class>
+    <class>ua.magento.caller.magento.entity.CoreWebsite</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatQuotePayment</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatOrderGrid</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatOrderPayment</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatOrderItem</class>
+    <class>ua.magento.caller.magento.entity.CoreStore</class>
+    <class>ua.magento.caller.magento.entity.CustomerAddressEntityVarchar</class>
+    <class>ua.magento.caller.magento.entity.CustomerEntity</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatOrder</class>
+    <class>ua.magento.caller.magento.entity.EavAttribute</class>
+    <class>ua.magento.caller.magento.entity.CoreStoreGroup</class>
+    <class>ua.magento.caller.magento.entity.CustomerAddressEntity</class>
+    <class>ua.magento.caller.magento.entity.CustomerAddressEntityText</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatOrderAddress</class>
+    <class>ua.magento.caller.magento.entity.CustomerEntityVarchar</class>
+    <class>ua.magento.caller.magento.entity.SalesFlatQuote</class>
+    <class>ua.magento.caller.magento.entity.EavEntityType</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.74.150:3306/admin_base?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="sasha"/>
@@ -28,8 +28,8 @@
   </persistence-unit>
   <persistence-unit name="Calls_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>ua.obolon.ponovoy.local.entity.CallRecriverCalls</class>
-    <class>ua.obolon.ponovoy.local.entity.ManagersCalls</class>
+    <class>ua.magento.caller.local.entity.ManagersCalls</class>
+    <class>ua.magento.caller.local.entity.CallRecriverCalls</class>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="Calls_PU"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.74.150:3306/call_receiver?zeroDateTimeBehavior=convertToNull"/>
